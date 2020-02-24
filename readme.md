@@ -2,7 +2,9 @@
 
 ###### Alice Baird 2020
 
-_On going project for automatic emotional soundscape generation - tested in python3._   
+wellSound is an on going project for automatic affective soundscape generation. This approach is rudimentary, initial-step.  
+Simply sonifying chromatic features from natural soundscapes. 
+
 
 Utilised for experiments in: 
 
@@ -18,6 +20,8 @@ Example output:
 
 ![](misc/22_original_mechanical.png)
 ![](misc/35_augmented_mechanical.png)
+
+tested in python3._   
 
 1. Add any audio files to data_dir (insure all of same duration)		
 2. For preprocessing: `python3 wellSounds.py chromatic pre`

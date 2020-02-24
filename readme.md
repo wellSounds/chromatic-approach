@@ -2,7 +2,7 @@
 
 ###### Alice Baird 2020
 
-wellSound is an on going project for automatic affective soundscape generation. This approach is rudimentary, initial-step.  
+wellSound is an on going project for automatic affective soundscape generation. This approach is a rudimentary, initial-step.  
 Simply sonifying chromatic features from natural soundscapes. 
 
 

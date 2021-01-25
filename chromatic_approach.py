@@ -1,6 +1,5 @@
 # wellSounds - Baird 2020.
 # Audio should be same length.
-# python
 import numpy as np
 import csv, os
 import pandas as pd
@@ -19,15 +18,13 @@ labels = data_dir + '1_filename.csv'
 
 
 if not os.path.exists(labels):
-
     with open(data_dir + "1_filename.csv", 'w') as f:
         f.write('filename')
     os.system('cd ' + data_dir + ' && ls >> ../1_filename.csv && cd ../ && mv 1_filename.csv ' + current_label + '/')
-
+    
 labels_df = pd.read_csv(labels, index_col=False)
 
 print('\n Wellsounds - chromatic approach \n Project setup for: ' + current_label + '\n')
-
 
 # normalise original audio
 def normalise_extract_chroma(current_label,labels_df):
@@ -36,7 +33,7 @@ def normalise_extract_chroma(current_label,labels_df):
     if not os.path.exists(output):
         os.makedirs(output)
 
-    'normalise with librosa '
+    #'normalise with librosa '
     if normalise_original_audio == True:
         path = 'audio/' + current_label + '/'
         # row_number = 0
@@ -436,7 +433,6 @@ def normalisation_synthetic(current_label):
 
         audio_file = row['1_filename.csv']
 
-
         audio, sr = librosa.core.load(path + 'compressed_' + audio_file, sr=16000)
         audio = audio * (0.7079 / np.max(np.abs(audio)))
         maxv = np.iinfo(np.int16).max
@@ -444,9 +440,6 @@ def normalisation_synthetic(current_label):
         scipy.io.wavfile.write('normalised_soundscapes_' + current_label + '/' + 'normalised_' + audio_file, sr, audio)
 
         print('normalised:', audio_file)
-
-
-
 
 def merge_scapes(current_label):
     """ merge the soundscapes together (original with synthetic)"""
@@ -458,9 +451,6 @@ def merge_scapes(current_label):
         normed_sox = 'sox -m ' + path + 'normalised_' + audio + ' original_normalised_' + current_label + '/' + audio + ' augmented_soundscapes_' + current_label + '/' + audio
         os.system(normed_sox)
         print('merged:', audio)
-
-
-
 
 def add_fade(current_label):
     """ fade final soundscape (Sox shell)"""
@@ -487,25 +477,3 @@ def clean_working_dir():
      os.system('rm -r segments*/')
      os.system('rm -r soundscapes*/')
      os.system('rm -r transposed*/')
-
-
-# if sys.argv[1] == 'pre':
-#     print('Begin preprocessing...\n')
-#     normalise_extract_chroma(current_label)
-#     preprocessing_feature_files(output, current_label)
-#     calculate_tempo(current_label)
-# if sys.argv[1] == 'gn':
-#     print('Generating notes...\n')
-#     generate_notes(current_label)
-#     combined_segmented_notes(current_label)
-#     mix_notes(current_label)
-# if sys.argv[1] == 'post':
-#     print('Post processing...\n')
-#     apply_eq(current_label)
-#     apply_compression(current_label)
-#     normalisation_synthetic(current_label)
-#     merge_scapes(current_label)
-#     add_fade(current_label)
-# if sys.argv[1] == 'cleanup':
-#     print('remove uneeded dir')
-#     clean_working_dir()

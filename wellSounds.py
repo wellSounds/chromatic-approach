@@ -1,19 +1,15 @@
 import os, sys
+import chromatic_approach as ws
+import pandas as pd
+
 if sys.argv[1] == 'chromatic':
-    import chromatic_approach as ws
-
-
-    import pandas as pd
-
     current_label = 'sfx'
     emo_choice = 'low'
     data_dir = 'audio/' + current_label + '/'
     labels = data_dir + '1_filename.csv'
-
     output = 'chroma_features_' + current_label
 
     if not os.path.exists(labels):
-
         with open(data_dir + "1_filename.csv", 'w') as f:
             f.write('filename')
         os.system('cd ' + data_dir + ' && ls >> ../1_filename.csv && cd ../ && mv 1_filename.csv ' + current_label + '/')
@@ -21,8 +17,6 @@ if sys.argv[1] == 'chromatic':
     labels_df = pd.read_csv(labels, index_col=False)
 
     print('\n Wellsounds - chromatic approach \n Project setup for: ' + current_label + '\n')
-
-
 
     if sys.argv[2] == 'pre':
         print('Begin preprocessing...\n')
@@ -45,4 +39,4 @@ if sys.argv[1] == 'chromatic':
         print('removed uneeded dir')
         ws.clean_working_dir()
 else:
-    print('call approahc -- chromatic')
+    print('call approach e.g., chromatic')
